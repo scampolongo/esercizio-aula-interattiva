@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Aula PC Interattiva</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            user-select: none;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Aula PC Interattiva</h2>
+
+    <label for="righe">Righe:</label>
+    <input type="text" id="righe"><br><br>
+
+    <label for="colonne">Colonne:</label>
+    <input type="text" id="colonne"><br><br>
+
+    <button onclick="generaTabella()">Genera Tabella</button>
+
+    <div id="output"></div>
+
+    <script>
+
+        function generaTabella() {
+            // Ottieni il numero di righe e colonne inserite
+            let numRighe = document.getElementById("righe").value;
+            let numColonne = document.getElementById("colonne").value;
+
+            // Controlla se i valori inseriti sono numeri validi
+            if (isNaN(numRighe) || isNaN(numColonne)) {
+                alert("Inserisci valori numerici validi per righe e colonne.");
+                return;
+            }
+
+            // Converti i valori in interi
+            numRighe = parseInt(numRighe);
+            numColonne = parseInt(numColonne);
+
+            // Genera la tabella con le immagini
+            let table = "<table>";
+            for (let i = 0; i < numRighe; i++) {
+                table += "<tr>";
+                for (let j = 0; j < numColonne; j++)
+                    table += "<td><img src='computer-off.png' onclick='accendi(this)' alt='Computer Off'></td>";
+                table += "</tr>";
+            }
+            table += "</table>";
+
+            // Mostra la tabella generata
+            document.getElementById("output").innerHTML = table;
+        }
+
+        function accendi(img) {
+            // Cambia la src dell'immagine al clic
+            if (img.src.includes("computer-off.png"))
+                img.src = "computer-on.png";
+            else
+                img.src = "computer-off.png";
+        }
+
+    </script>
+
+</body>
+
+</html>
